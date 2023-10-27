@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, Platform } from '@ionic/angular';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
+
+import { App, AppInfo } from '@capacitor/app';
 
 @Component({
   selector: 'app-tab1',
@@ -10,5 +12,15 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
   imports: [IonicModule, ExploreContainerComponent],
 })
 export class Tab1Page {
-  constructor() {}
+  appInfo?: AppInfo;
+  constructor(private platform: Platform) {
+    this.getAppVersion();
+  }
+  getAppVersion() {
+    if (this.platform.is('hybrid')) {
+      App.getInfo().then((d) => {
+        this.appInfo = d;
+      });
+    }
+  }
 }
