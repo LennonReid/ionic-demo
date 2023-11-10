@@ -14,6 +14,11 @@
   </ion-header>
 
   <app-explore-container
-    name="v{{ appInfo?.version + ' ' + '(' + appInfo?.build + ')' }}"
+    name="@ionic/angular/standalone capacitor camera issue"
   ></app-explore-container>
+  <ion-list>
+    <ion-item>
+      <ion-button (click)="pickImage()">Pick Iimage</ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
