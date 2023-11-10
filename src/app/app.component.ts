@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, EnvironmentInjector, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { defineCustomElement as defineLoading } from '@ionic/core/components/ion-loading';
 
 @Component({
   selector: 'app-root',
@@ -18,5 +19,6 @@ export class AppComponent {
   public environmentInjector = inject(EnvironmentInjector);
 
   constructor() {
+    defineLoading();
   }
 }

@@ -35,7 +35,7 @@ export class Tab1Page {
   }
   async pickImage() {
     // Camera.requestPermissions does not work when loading is present.
-    await this.presentLoading('waiting');
+    const getPictureLoading = await this.presentLoading('waiting');
     const options = {
       quality: 50,
       allowEditing: false,
@@ -47,8 +47,15 @@ export class Tab1Page {
         if (permissionResult.photos === 'granted' || permissionResult.photos === 'limited') {
           await Camera.getPhoto(options).then(
             async (photo: Photo) => {
+              getPictureLoading.dismiss();
               console.log('getPhoto', photo.dataUrl);
-            })
+            },
+            async () => {
+              getPictureLoading.dismiss();
+            }
+          )
+        } else {
+          getPictureLoading.dismiss();
         }
       })
   }
